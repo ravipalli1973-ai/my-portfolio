@@ -7,8 +7,9 @@ var typed = new Typed(".typing", {
         "Software Developer",
         "Python Developer",
         "Full Stack Developer",
+        "Data Analyst",
         "Machine Learning Enthusiast",
-        "Data Analyst"
+        "AI Developer"
     ],
     typeSpeed: 80,
     backSpeed: 50,
@@ -30,9 +31,10 @@ window.addEventListener("scroll", () => {
     sections.forEach(section => {
 
         const sectionTop = section.offsetTop - 120;
-        const sectionHeight = section.offsetHeight;
+        const sectionBottom = sectionTop + section.offsetHeight;
 
-        if (window.scrollY >= sectionTop) {
+        if (window.scrollY >= sectionTop &&
+            window.scrollY < sectionBottom) {
             current = section.getAttribute("id");
         }
 
