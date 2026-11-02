@@ -1,0 +1,28 @@
+name: Portfolio CI Check
+
+on:
+  push:
+    branches:
+      - main
+      - feature-name
+  workflow_dispatch:
+
+jobs:
+  check-code:
+    name: Validate Portfolio Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Core Files Exist
+        run: |
+          echo "Checking essential portfolio files..."
+          test -f index.html && echo "index.html exists" || exit 1
+
+      - name: HTML Syntax Lint
+        run: |
+          sudo apt-get update && sudo apt-get install -y tidy
+          tidy -errors -quiet -utf8 index.html || true
+          echo "Portfolio validation complete!"
